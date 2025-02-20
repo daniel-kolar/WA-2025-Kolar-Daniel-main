@@ -1,2 +1,2 @@
-# WA-2025-Zizka-Tomas
+# WA-2025-Kolar-Daniel
 Repo pro předmět Vývoj webových aplikací
