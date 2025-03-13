@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Kolář - css-jednotky</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <style>
+        h1 { font-size: clamp(1.5rem, 2vw, 4rem); }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper"> <!--tagy pro navigaci: div, article,...-->
+        <header>
+            <h1>WA - CSS - jednotky (záhlaví webu)</h1>
+        </header>
+        <nav>
+            <!-- Navigace pomocí odrážek -->
+            <ul>
+                <li><a href="index.html">Domů</a></li>
+                <li><a href="gallery.html">Galerie</a></li>
+                <li><a href="01-bootstrap-web/index.html">Bootstrap-web</li>
+                <li><a href="css-jednotky.html">CSS-jednotky</a></li>
+                <li><a href="#">O nás</a></li>
+                <li><a href="#">Kontakt</a></li>
+                
+            </ul>
+        </nav>
+        <main>
+            <h1>Toto je nadpis h1 s vyuziti funkce clamp</h1>   <!--style="background-color:aquamarine"  Čím dál jsem od mého prvku tím menší preferenci má nastaví styl-->
+            <p>toto je text v css-jednotky</p>
+        </main>
+        <footer class="bg-dark text-center text-white py-3">
+            <p>&copy; 2025 Daniel Kolář. All rights reserved.</p>
+            <a href="#" class="text-white">Privacy Policy</a> | <a href="#" class="text-white">Terms of Service</a> | <a href="#" class="text-white">Cookies</a>
+          </footer>
+        </div>
+        <h1>Mění se barva nadpisu</h1>
+        <p>Mění se barva paragrafu</p>
+    </div>
+
+</body>
+</html>
