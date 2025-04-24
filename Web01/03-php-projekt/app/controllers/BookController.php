@@ -19,7 +19,6 @@ class BookController {
                 echo "Uživatel není příhlášen";
                 exit;
             }
-        }
 
         $userId = $_SESSION["user_id"]; //získáme ID přihlášeného uživatele
         $title = htmlspecialchars($_POST['title']);
@@ -47,13 +46,14 @@ class BookController {
             }
 
             // Uložení knihy do DB - dočasné řešení, než budeme mít výpis knih
-            if ($this->bookModel->create($title, $author, $category, $subcategory, $year, $price, $isbn, $description, $link, $imagePaths, $userId)) {
+            if ($this->bookModel->create($title, $author, $category, $subcategory, $year, $price, $isbn, $description, $link, $imagePaths, $userID)) {
                 header("Location: ../controllers/book_list.php");
                 exit();
             } else {
                 echo "Chyba při ukládání knihy.";
             }
         }
+    }
 
     public function listBooks () {
         $books = $this->bookModel->getAll();
