@@ -6,7 +6,8 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 ?>
-DOCTYPE html>
+
+<DOCTYPE html>
 <html lang="cs">
 <head>
     <meta charset="UTF-8">

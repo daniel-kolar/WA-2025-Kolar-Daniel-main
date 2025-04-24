@@ -8,10 +8,8 @@ class Book {
     }
 
     public function create($title, $author, $category, $subcategory, $year, $price, $isbn, $description, $link, $images, $user_id) {
-        
-        // Dvojtečka označuje pojmenovaný parametr => Místo přímých hodnot se používají placeholdery.
-        // PDO je pak nahradí skutečnými hodnotami při volání metody execute().
-        // Chrání proti SQL injekci (bezpečnější než přímé vložení hodnot).
+
+        // Vkládáme i user_id, abychom měli vazbu na uživatele
         $sql = "INSERT INTO books (
                     title, author, category, subcategory, year, price, isbn, description, link, images, user_id
                 ) VALUES (
@@ -30,8 +28,8 @@ class Book {
             ':isbn' => $isbn,
             ':description' => $description,
             ':link' => $link,
-            ':images' => json_encode($images), // Ukládání obrázků jako JSON
-            ':user_id' => $user_id // Přidání user_id pro uložení ID uživatele
+            ':images' => json_encode($images),
+            ':user_id' => $user_id
         ]);
     }
 

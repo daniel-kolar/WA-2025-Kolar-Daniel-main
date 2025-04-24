@@ -7,22 +7,30 @@ class BookController {
     private $bookModel;
 
     public function __construct() {
+        session_start(); //Zajištení, že session je dostupná abych měli přístup k uživatelskému ID
         $database = new Database();
         $this->db = $database->getConnection();
         $this->bookModel = new Book($this->db);
     }
 
     public function createBook() {
-        if ($_SERVER["REQUEST_METHOD"] == "POST") {
-            $title = htmlspecialchars($_POST['title']);
-            $author = htmlspecialchars($_POST['author']);
-            $category = htmlspecialchars($_POST['category']);
-            $subcategory = !empty($_POST['subcategory']) ? htmlspecialchars($_POST['subcategory']) : null;
-            $year = intval($_POST['year']);
-            $price = floatval($_POST['price']);
-            $isbn = htmlspecialchars($_POST['isbn']);
-            $description = htmlspecialchars($_POST['description']);
-            $link = htmlspecialchars($_POST['link']);
+        if($_SERVER ["REQUEST_METHOD"] == "POST") {
+            if(!isset($_SESSION['user_id'])){
+                echo "Uživatel není příhlášen";
+                exit;
+            }
+        }
+
+        $userId = $_SESSION["user_id"]; //získáme ID přihlášeného uživatele
+        $title = htmlspecialchars($_POST['title']);
+        $author = htmlspecialchars($_POST['author']);
+        $category = htmlspecialchars($_POST['category']);
+        $subcategory = !empty($_POST['subcategory']) ? htmlspecialchars($_POST['subcategory']) : null;
+        $year = intval($_POST['year']);
+        $price = floatval($_POST['price']);
+        $isbn = htmlspecialchars($_POST['isbn']);
+        $description = htmlspecialchars($_POST['description']);
+        $link = htmlspecialchars($_POST['link']);
 
             // Zpracování nahraných obrázků
             $imagePaths = [];
@@ -39,14 +47,13 @@ class BookController {
             }
 
             // Uložení knihy do DB - dočasné řešení, než budeme mít výpis knih
-            if ($this->bookModel->create($title, $author, $category, $subcategory, $year, $price, $isbn, $description, $link, $imagePaths, $_SESSION['user_id'])) {
+            if ($this->bookModel->create($title, $author, $category, $subcategory, $year, $price, $isbn, $description, $link, $imagePaths, $userId)) {
                 header("Location: ../controllers/book_list.php");
                 exit();
             } else {
                 echo "Chyba při ukládání knihy.";
             }
         }
-    }
 
     public function listBooks () {
         $books = $this->bookModel->getAll();

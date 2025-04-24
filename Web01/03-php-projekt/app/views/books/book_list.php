@@ -1,7 +1,7 @@
 <?php session_start(); ?>
 
 <!DOCTYPE html>
-<html lang="cs">
+<html lang="cs"> 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,6 +51,11 @@
                 </div>
             </div>
         </nav>
+        <?php 
+            echo 'Session ID: ' . session_id();
+            session_regenerate_id(true);
+            echo '<br>New Session ID: ' . session_id(); 
+        ?>
         <h2>Výpis knih</h2>
          <?php if(!empty($books)): ?>
             <!-- <h3>Hrubý výpis knih</h3> -->
