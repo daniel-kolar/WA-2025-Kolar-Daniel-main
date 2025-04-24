@@ -39,7 +39,7 @@ class BookController {
             }
 
             // Uložení knihy do DB - dočasné řešení, než budeme mít výpis knih
-            if ($this->bookModel->create($title, $author, $category, $subcategory, $year, $price, $isbn, $description, $link, $imagePaths)) {
+            if ($this->bookModel->create($title, $author, $category, $subcategory, $year, $price, $isbn, $description, $link, $imagePaths, $_SESSION['user_id'])) {
                 header("Location: ../controllers/book_list.php");
                 exit();
             } else {
